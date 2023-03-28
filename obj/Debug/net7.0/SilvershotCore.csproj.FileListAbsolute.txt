@@ -134,8 +134,6 @@ D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\SilvershotCore.deps.json
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\SilvershotCore.runtimeconfig.json
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\SilvershotCore.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\SilvershotCore.pdb
-D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\AutoMapper.dll
-D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\AWSSDK.Core.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\AWSSDK.SecurityToken.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Azure.Core.dll
@@ -144,7 +142,6 @@ D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\DnsClient.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Humanizer.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
-D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
 D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
@@ -223,3 +220,6 @@ D:\.NET\SilvershotCore.Api\obj\Debug\net7.0\refint\SilvershotCore.dll
 D:\.NET\SilvershotCore.Api\obj\Debug\net7.0\SilvershotCore.pdb
 D:\.NET\SilvershotCore.Api\obj\Debug\net7.0\SilvershotCore.genruntimeconfig.cache
 D:\.NET\SilvershotCore.Api\obj\Debug\net7.0\ref\SilvershotCore.dll
+D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+D:\.NET\SilvershotCore.Api\bin\Debug\net7.0\SilvershotCore.xml
+D:\.NET\SilvershotCore.Api\obj\Debug\net7.0\SilvershotCore.xml

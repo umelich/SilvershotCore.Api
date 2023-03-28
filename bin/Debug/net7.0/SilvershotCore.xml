@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SilvershotCore</name>
+    </assembly>
+    <members>
+        <member name="P:SilvershotCore.WeatherForecast.TemperatureC">
+            <summary>
+            Temp in C
+            </summary>
+        </member>
+        <member name="P:SilvershotCore.WeatherForecast.TemperatureF">
+            <summary>
+            Temp in F
+            </summary>
+        </member>
+        <member name="P:SilvershotCore.WeatherForecast.Summary">
+            <summary>
+            Summary
+            </summary>
+        </member>
+    </members>
+</doc>

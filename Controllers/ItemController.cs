@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace SilvershotCore.Controllers
 {
-    //[Route("[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
     {
@@ -27,19 +27,17 @@ namespace SilvershotCore.Controllers
 
         [HttpGet]
         [Route("GetItemByID")]
-        public List<ItemModel> GetItemByID(string itemID)
+        public List<ItemModel> GetItemByID(int itemID)
         {
-            return LoadListFromDB().Where(i => i.ItemCode == itemID).ToList();
+            return LoadListFromDB().Where(i => i.ItemID == itemID).ToList();
         }
 
-        // TODO:
-        // rewrite string 42 itemModel.ItemPrice
         [HttpPost]
         [Route("PostItem")]
         public string PostItem(ItemModel itemModel)
         {
             SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Item VALUES('"+ itemModel.ItemCode + "','"+ itemModel.ItemName + "','" + itemModel.ItemPrice + "','"+ itemModel.ItemDetails + "')", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Item VALUES('"+ itemModel.ItemCode + "','"+ itemModel.ItemName + "','" + itemModel.ItemPrice + "','" + itemModel.ItemDetails + "')", sqlConnection);
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
@@ -51,10 +49,10 @@ namespace SilvershotCore.Controllers
 
         [HttpDelete]
         [Route("DeleteItem")]
-        public string DeleteItem(string itemID)
+        public string DeleteItem(string itemCode)
         {
             SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-            SqlCommand sqlCommand = new SqlCommand("DELETE FROM Item WHERE ItemID='"+ itemID + "'; ", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("DELETE FROM Item WHERE ItemID='"+ itemCode + "'; ", sqlConnection);
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
@@ -75,6 +73,7 @@ namespace SilvershotCore.Controllers
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 ItemModel itemModel = new ItemModel();
+                itemModel.ItemID = Int32.Parse(dataTable.Rows[i]["ItemID"].ToString());
                 itemModel.ItemCode = dataTable.Rows[i]["ItemCode"].ToString();
                 itemModel.ItemName = dataTable.Rows[i]["ItemName"].ToString();
                 itemModel.ItemPrice = decimal.Parse(dataTable.Rows[i]["ItemPrice"].ToString());

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KPGXrBxj6BWx1Q+CY+b6QaLMat4XJXP/7sH+fIpBYbavvzQh3bxu2w/217IRD7A/LyQcq2vwXMLd53oX/rWUzA==",
+  "dgSpecHash": "wDsaN3HDTEh8y/UfBor64LpA4Gp1bcoTMBQeCJ3+Ea/64xZKrmf7SylQUvX4qb+RmNIlhzIoTS/xacYIPMewIA==",
   "success": true,
   "projectFilePath": "D:\\.NET\\SilvershotCore.Api\\SilvershotCore.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.4\\microsoft.entityframeworkcore.design.7.0.4.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.4\\microsoft.entityframeworkcore.relational.7.0.4.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.4\\microsoft.entityframeworkcore.sqlserver.7.0.4.nupkg.sha512",
+    "C:\\Users\\Marina\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.4\\microsoft.entityframeworkcore.tools.7.0.4.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

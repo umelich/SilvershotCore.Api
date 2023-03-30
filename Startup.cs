@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SilvershotCore
 {
@@ -17,30 +22,39 @@ namespace SilvershotCore
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            //
-            //
-            //
             services.AddControllers();
+
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", policy =>
-                {
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyMethod();
-                    policy.AllowAnyOrigin();
-                });
+                options.AddPolicy("CorsPolicy", builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    //.AllowAnyOrigin()   //undesirable
+                    .AllowCredentials() //undesirable
+                    .Build());
             });
-            services.AddAuthentication();
 
-            services.AddVersionedApiExplorer(options =>
-                options.GroupNameFormat = "'v'VVV");
-            //
-            //
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+
+            services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
 
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1",
-                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    new OpenApiInfo
                     {
                         Title = "SilvershotCore.Api",
                         Description = "SilvershotCore.Api Document",
@@ -51,8 +65,8 @@ namespace SilvershotCore
                 options.IncludeXmlComments(filePath);
             });
                         
-            services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true; });
-            //
+            services.AddApiVersioning(options => options.AssumeDefaultVersionWhenUnspecified = true);
+
             services.AddEndpointsApiExplorer();
         }
 
@@ -69,11 +83,10 @@ namespace SilvershotCore
                 options.RoutePrefix = string.Empty;
             });
 
-            // Configure the HTTP request pipeline.
-            //...
+
             app.UseRouting();
             app.UseHttpsRedirection();
-            app.UseCors("AllowAll");
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 

@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="src\**" />
+    <Content Remove="Configuration\**" />
+    <Content Remove="src\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="src\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="src\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
@@ -29,11 +40,6 @@
 	<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
 	<PackageReference Include="TourmalineCore.AspNetCore.JwtAuthentication.Core" Version="0.3.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-    <Folder Include="src\" />
   </ItemGroup>
 
 </Project>

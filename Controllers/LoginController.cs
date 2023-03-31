@@ -11,9 +11,6 @@ using SilvershotCore.Models;
 
 namespace SilvershotCore.Controllers
 {
-    //[Route("[controller]")]
-    [Route("")]
-    [ApiController]
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -52,7 +49,7 @@ namespace SilvershotCore.Controllers
         }
         private string GenerateWebToken(UserModel userModel)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var securityKey = AuthOptions.GetSymmetricSecurityKey();
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -62,10 +59,10 @@ namespace SilvershotCore.Controllers
             };
 
             var jwt = new JwtSecurityToken(
-            issuer: _configuration["Jwt:Issuer"],
-            audience: _configuration["Jwt:Issuer"],
-            claims,
-            expires: DateTime.Now.AddHours(2),
+            issuer: AuthOptions.ISSUER,
+            audience: AuthOptions.AUDIENCE,
+            claims: claims,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromSeconds(2)), //lifetime of token = 5 minutes + expires
             signingCredentials: credentials
             );
 

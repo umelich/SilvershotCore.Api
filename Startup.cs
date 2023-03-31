@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SilvershotCore
 {
@@ -40,16 +41,18 @@ namespace SilvershotCore
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
+                        ValidIssuer = AuthOptions.ISSUER,
                         ValidateAudience = true,
+                        ValidAudience = AuthOptions.AUDIENCE,
                         ValidateLifetime = true,
+                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["Jwt:Issuer"],
-                        ValidAudience = Configuration["Jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                     };
                 });
 
             services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             services.AddSwaggerGen(options =>
             {
@@ -64,7 +67,7 @@ namespace SilvershotCore
                 var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
                 options.IncludeXmlComments(filePath);
             });
-                        
+
             services.AddApiVersioning(options => options.AssumeDefaultVersionWhenUnspecified = true);
 
             services.AddEndpointsApiExplorer();
@@ -82,7 +85,6 @@ namespace SilvershotCore
                 options.SwaggerEndpoint("swagger/v1/swagger.json", "SilvershotCore.Api");
                 options.RoutePrefix = string.Empty;
             });
-
 
             app.UseRouting();
             app.UseHttpsRedirection();
